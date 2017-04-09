@@ -1,0 +1,49 @@
+page-juego {
+
+
+}
+  .scroll-content{
+    background-color: pink; 
+    font: small-caps 100%/200% serif !important;
+        }
+
+.top-rated,.recent,.oldies{
+	float:left;
+	text-align:center;
+	font-family: 'Roboto',sans-serif;
+    font-size: 13px;
+	height:40px;
+	line-height:40px;
+    margin-top:10px;
+	cursor:pointer;
+	-webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+	text-transform: uppercase;
+	letter-spacing:1.5px;
+}
+
+.top-rated{color:#666;margin-left:15px;font-weight:500;align:center;}
+ 
+.toolbar-background{
+    background-color: hotpink;
+}
+
+.header-md{
+    background-color: hotpink
+}
+
+
+
+.caja {
+
+font-family: sans-serif;
+
+font-size: 18px;
+
+font-weight: 400;
+
+color: #ffffff;
+
+background:blue
+
+}
