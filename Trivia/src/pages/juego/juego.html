@@ -4,10 +4,23 @@
 
 <ion-content padding>
 	<form>
+ <div *ngIf=veoini>	
  		<p class="caja"> {{ pregunta }}</p>
-		 <input type="button" (click)="verResp(pregunta,r1)" value={{r1}}><br><br>
-		 <input type="button" (click)="verResp(pregunta,r2)" value={{r2}}><br><br>
-		 <input type="button" (click)="verResp(pregunta,r3)" value={{r3}}><br><br>
-		 <input type="button" (click)="verResp(pregunta,r4)" value={{r4}}><br><br>
+	  	<input type="button" (click)="verResp(pregunta,r1,1)" value={{r1}} [ngStyle]="{'background-color':btncolor1}"><br><br>
+		<input type="button" (click)="verResp(pregunta,r2,2)" value={{r2}} [ngStyle]="{'background-color':btncolor2}"><br><br>
+		<input type="button" (click)="verResp(pregunta,r3,3)" value={{r3}} [ngStyle]="{'background-color':btncolor3}"><br><br>
+		<input type="button" (click)="verResp(pregunta,r4,4)" value={{r4}} [ngStyle]="{'background-color':btncolor4}"><br><br>
+  </div>
+
+ <div *ngIf=veo align=center>	 
+		<input type="button" (click)="verPreguntaYResp(contador)" value="Siguiente >>"><br><br>	 
+ </div>
+
+ <div *ngIf=veoFin align=center>	 
+		{{resultOK}}<br><br>
+		{{resultNoOK}}
+		<input type="button" (click)=volverAEmpezar() value="Volver">
+ </div>
+
 	</form>
 </ion-content>
