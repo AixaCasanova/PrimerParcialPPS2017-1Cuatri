@@ -3,6 +3,7 @@ import {BaseRequestOptions, Http} from '@angular/http';
 import { NavController } from 'ionic-angular';
 import 'rxjs/Rx';
 import { login } from '../login/login'
+import { NativeAudio } from '@ionic-native/native-audio';
 
 
 @Component({
@@ -62,9 +63,11 @@ export class juego
       5:{r1:"Veinticinco",r2:"Diez",r3:"Cinco",r4:"Veinte"}       
     };
     
-    constructor(public navCtrl: NavController, public http: Http) 
+    constructor(public navCtrl: NavController, public http: Http, private nativeAudio: NativeAudio) 
     {
       this.verPreguntaYResp(this.contador);
+      //this.nativeAudio.preloadSimple('uniqueId1', 'C:\Users\aixac\Desktop\oksound.mp3').then();
+      //this.nativeAudio.play('uniqueId1').then();
     }
     
     verResp(pregu,re,nrobtn)
@@ -151,5 +154,7 @@ export class juego
  {
     this.navCtrl.setRoot(login);
  }
+
+
 
 }
