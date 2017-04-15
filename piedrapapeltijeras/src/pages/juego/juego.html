@@ -1,0 +1,50 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title align=center>
+      {{NombreUss}}
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding align=center>
+
+<form>
+
+  <br><br>
+
+  <div *ngIf=veoTodo>	
+     Vos:<br><br>
+     <div *ngIf=veoVos1>	
+        
+        <button (click)="Jugar('piedra')"><img src="assets/img/piedra.jpg" width=50 height=50> </button>
+        <button (click)="Jugar('papel')"><img src="assets/img/papel.jpg" width=50 height=50> </button>
+        <button (click)="Jugar('tijera')"><img src="assets/img/tijeras.jpg" width=50 height=50> </button>
+        <br><br>
+      </div>
+
+      <div *ngIf=veoVos2>
+       <img  [src]="imgElect" width=50 height=50>
+      </div>
+
+        La maquina:<br><br>
+        <img  [src]="img" width=50 height=50>
+        <br><br>
+        <div *ngIf=veoini>	
+          <input type="button" value="Siguiente Ronda!" (click)="YaJugue()">
+        </div>
+        <br><br>
+    
+  </div>
+  <table border="2" align=center><br><br>
+    Maquina:{{ContMaq}}<br><br>
+    Vos:{{ContUsr}}<br><br>
+  </table>
+  <div *ngIf=veoTodo2>	
+     <br><br>
+    <img [src]="img2" width=200 height=200><br><br>
+    <input type="button" value="Volver a empezar!" (click)="VEmpezar()">
+  </div>
+</form>
+
+
+</ion-content>
