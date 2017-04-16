@@ -15,13 +15,7 @@ export class juego
 
     constructor(public navCtrl: NavController, public http: Http) 
     {
-       console.info("llego aca!");
-      /*  this.http.get("http://tplab42016.hol.es/ws/clientes")
-        .map(res => res.json())
-        .subscribe((quote) =>{
-          console.info(quote);  
-      }); */
-
+ 
 
     }
  

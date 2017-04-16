@@ -11,7 +11,7 @@ import { juego } from '../pages/juego/juego';
   templateUrl: 'app.html'
 })
 export class MyApp {
-  rootPage = login;  
+  rootPage = TabsPage;  
 
   constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen) {
     platform.ready().then(() => {
