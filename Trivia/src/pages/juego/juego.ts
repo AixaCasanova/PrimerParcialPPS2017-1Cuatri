@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
 import {BaseRequestOptions, Http} from '@angular/http';
-import { NavController } from 'ionic-angular';
+import { NavController, NavParams } from 'ionic-angular';
 import 'rxjs/Rx';
 import { login } from '../login/login'
 import { NativeAudio } from '@ionic-native/native-audio';
-
+import {AngularFire, FirebaseListObservable} from 'angularfire2';
+import {firebaseconfig} from '../firebase/';
 
 @Component({
   selector: 'juego',
@@ -32,6 +33,8 @@ export class juego
     private veoFin: boolean = false;
     resultOK="";
     resultNoOK="";
+    usr:any;
+    usuarios: FirebaseListObservable<any[]>;
     listaPreguntas={
         1:{
           pr:"en que paises se encuentra cordoba?",
@@ -62,17 +65,24 @@ export class juego
       4:{r1:"2001",r2:"2003",r3:"2006",r4:"2007"},
       5:{r1:"Veinticinco",r2:"Diez",r3:"Cinco",r4:"Veinte"}       
     };
-    
-    constructor(public navCtrl: NavController, public http: Http, private nativeAudio: NativeAudio) 
+    listaUbdd={};
+     nombre:any;
+    constructor(public navCtrl: NavController, public http: Http, private nativeAudio: NativeAudio, param:NavParams, af: AngularFire) 
     {
       this.verPreguntaYResp(this.contador);
-      //this.nativeAudio.preloadSimple('uniqueId1', 'C:\Users\aixac\Desktop\oksound.mp3').then();
-      //this.nativeAudio.play('uniqueId1').then();
+      this.usuarios = af.database.list('/usuarios');
+      console.info(this.usuarios);
+      console.info("el nombre es:"+param.data);
+       this.nombre=param.data;
+        this.usr={"nombre":this.nombre,
+          "fecha":Date.now()};
+      this.usuarios.push(this.usr);   
+     
     }
-    
+   
     verResp(pregu,re,nrobtn)
     {    
-      
+     
       console.info("empieza con: "+this.contador);
       if(this.contador <= 5)
       {

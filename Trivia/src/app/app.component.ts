@@ -7,6 +7,8 @@ import { Flashlight } from '@ionic-native/flashlight';
 import { Vibration } from '@ionic-native/vibration';
 import { login } from '../pages/login/login';
 import { juego } from '../pages/juego/juego';
+ 
+
 @Component({
   templateUrl: 'app.html'
 })

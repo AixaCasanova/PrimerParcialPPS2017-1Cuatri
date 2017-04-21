@@ -17,7 +17,18 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { Flashlight } from '@ionic-native/flashlight';
 import { Vibration } from '@ionic-native/vibration';
 import { NativeAudio } from '@ionic-native/native-audio';
+import {AngularFireModule} from 'angularfire2';
+import {firebaseconfig} from '../pages/firebase/firebaseconfig';
 
+/*
+export const firebaseConfig = {
+  apiKey: "AIzaSyBDMuBMxaY22NLtZlxvDQuDncFw0BhB3Ac",
+  authDomain: "http://localhost:8100/",
+  databaseURL: "https://trivia-94f86.firebaseio.com/",
+  storageBucket: "your-domain-name.appspot.com",
+  messagingSenderId: '<your-messaging-sender-id>'
+};
+*/
 @NgModule({
   declarations: [
     MyApp,
@@ -26,11 +37,12 @@ import { NativeAudio } from '@ionic-native/native-audio';
     HomePage,
     TabsPage,
     login,
-    juego
+    juego   
  
   ],
   imports: [
-    IonicModule.forRoot(MyApp)
+    IonicModule.forRoot(MyApp),
+     AngularFireModule.initializeApp(firebaseconfig)
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -49,6 +61,7 @@ import { NativeAudio } from '@ionic-native/native-audio';
     Flashlight,
     Vibration,
     NativeAudio,
+    AngularFireModule,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })

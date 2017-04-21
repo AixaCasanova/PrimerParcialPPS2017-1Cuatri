@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import {BaseRequestOptions, Http} from '@angular/http';
-import { NavController } from 'ionic-angular';
+import { NavController  } from 'ionic-angular';
 import { juego } from '../juego/juego';
+//import {AngularFire, FirebaseListObservable} from 'angularfire2';
  
 
 @Component({
@@ -12,18 +13,18 @@ import { juego } from '../juego/juego';
 export class login 
 {
 
-    constructor(public navCtrl: NavController, public http: Http) 
+    //items: FirebaseListObservable<any[]>;
+    constructor(public navCtrl: NavController, public http: Http )//, af: AngularFire 
     {
-
+         //this.items = af.database.list('/items');
     }
  
     Unusuario = {};
    
     loguear()
-    {
-      
-
-       this.navCtrl.setRoot(juego);
+    { 
+      //console.info(this.Unusuario['usuario']);
+       this.navCtrl.setRoot(juego,this.Unusuario['usuario']);
     }
 
 
