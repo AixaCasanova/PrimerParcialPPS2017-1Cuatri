@@ -6,6 +6,7 @@ import { login } from '../login/login'
 import { NativeAudio } from '@ionic-native/native-audio';
 import {AngularFire, FirebaseListObservable} from 'angularfire2';
 import {firebaseconfig} from '../firebase/';
+import { Vibration } from '@ionic-native/vibration';
 
 @Component({
   selector: 'juego',
@@ -35,6 +36,7 @@ export class juego
     resultNoOK="";
     usr:any;
     usuarios: FirebaseListObservable<any[]>;
+    lsrpr: FirebaseListObservable<any[]>;
     listaPreguntas={
         1:{
           pr:"en que paises se encuentra cordoba?",
@@ -67,22 +69,27 @@ export class juego
     };
     listaUbdd={};
      nombre:any;
-    constructor(public navCtrl: NavController, public http: Http, private nativeAudio: NativeAudio, param:NavParams, af: AngularFire) 
+     vib:any;
+
+    constructor(public navCtrl: NavController,public vibration:Vibration, public http: Http, private nativeAudio: NativeAudio, param:NavParams, af: AngularFire) 
     {
-      this.verPreguntaYResp(this.contador);
+      this.verPreguntaYResp();
       this.usuarios = af.database.list('/usuarios');
-      console.info(this.usuarios);
+      this.lsrpr=af.database.list("/pr");
+      console.info();
       console.info("el nombre es:"+param.data);
        this.nombre=param.data;
         this.usr={"nombre":this.nombre,
           "fecha":Date.now()};
-      this.usuarios.push(this.usr);   
+      this.usuarios.push(this.usr); 
+      this.vib=vibration;
+        
      
     }
    
     verResp(pregu,re,nrobtn)
     {    
-     
+      this.lsrpr.push({"pr":pregu,"re":re,"usuario":this.nombre});
       console.info("empieza con: "+this.contador);
       if(this.contador <= 5)
       {
@@ -106,6 +113,7 @@ export class juego
              else if(nrobtn==2){this.btncolor2='green';}
              else if(nrobtn==3){this.btncolor3='green';}
              else if(nrobtn==4){this.btncolor4='green';}
+             
           }
           else{ 
             this.ContNoOK++;
@@ -113,7 +121,7 @@ export class juego
             else if(nrobtn==2){this.btncolor2='red';}
             else if(nrobtn==3){this.btncolor3='red';}
             else if(nrobtn==4){this.btncolor4='red';}
-                
+            this.vibration.vibrate(500);   
           }
 
       
@@ -130,17 +138,25 @@ export class juego
            this.veoFin=true;
            this.resultOK="Correctas: " + this.ContOK;
            this.resultNoOK="Incorrectas: " + this.ContNoOK;
+         } else
+         {
+            var currenttime:number=setTimeout(()=>{
+            this.verPreguntaYResp();
+            },1000);
          }
 
-      }
 
-      verPreguntaYResp(ind)
+    }
+
+
+      verPreguntaYResp()
       {
-        this.pregunta = this.listaPreguntas[ind]['pr'];   
-        this.r1=this.listaRespuestas[ind]['r1'];
-        this.r2=this.listaRespuestas[ind]['r2'];
-        this.r3=this.listaRespuestas[ind]['r3'];
-        this.r4=this.listaRespuestas[ind]['r4'];
+
+        this.pregunta = this.listaPreguntas[this.contador]['pr'];
+        this.r1=this.listaRespuestas[this.contador]['r1'];
+        this.r2=this.listaRespuestas[this.contador]['r2'];
+        this.r3=this.listaRespuestas[this.contador]['r3'];
+        this.r4=this.listaRespuestas[this.contador]['r4'];
         
         this.btncolor1='';
         this.btncolor2='';
@@ -148,7 +164,6 @@ export class juego
         this.btncolor4='';
         this.banderaOk = false;
         this.veo= false;
-
 
         if(this.contador > 5){
 
@@ -159,6 +174,10 @@ export class juego
            this.resultNoOK="Incorrectas: " + this.ContNoOK;
          }
       }
+ 
+ 
+ 
+ 
  
  volverAEmpezar()
  {

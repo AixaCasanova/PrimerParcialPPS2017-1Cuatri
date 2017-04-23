@@ -16,7 +16,7 @@ Jugador: {{nombre}}
   </div>
 
  <div *ngIf=veo align=center>	 
-		<input type="button" (click)="verPreguntaYResp(contador)" value="Siguiente >>"><br><br>	 
+	<!--	<input type="button" (click)="verPreguntaYResp(contador)" value="Siguiente >>"><br><br>	--> 
  </div>
 
  <div *ngIf=veoFin align=center>	 
@@ -25,5 +25,6 @@ Jugador: {{nombre}}
 		<input type="button" (click)=volverAEmpezar() value="Volver">
  </div>
 
+<!--<li *ngFor="let item of usuarios|async">{{item.nombre}}</li>-->
 	</form>
 </ion-content>

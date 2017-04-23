@@ -13,10 +13,12 @@ import { juego } from '../juego/juego';
 export class login 
 {
 
+   
     //items: FirebaseListObservable<any[]>;
     constructor(public navCtrl: NavController, public http: Http )//, af: AngularFire 
     {
          //this.items = af.database.list('/items');
+        
     }
  
     Unusuario = {};
@@ -27,6 +29,7 @@ export class login
        this.navCtrl.setRoot(juego,this.Unusuario['usuario']);
     }
 
+    myFunction(){}
 
  
 }
