@@ -75,11 +75,14 @@ export class juego
     listaPregResp:Array<any>=[];
      nombre:any;
      vib:any;
+     audioBTN;
   //
 
  
-    constructor(public navCtrl: NavController,public vibration:Vibration,public http: Http, private nativeAudio: NativeAudio, param:NavParams, af: AngularFire) 
+    constructor(public navCtrl: NavController,public vibration:Vibration ,public http: Http, private nativeAudio: NativeAudio, param:NavParams, af: AngularFire) 
     {
+      this.audioBTN=nativeAudio;
+      this.audioBTN.preloadSimple('ok', '../../assets/resok2.wav');
       this.unafecha = Date();
         console.info(this.unafecha.toString()); 
       this.verPreguntaYResp();
@@ -131,7 +134,10 @@ export class juego
              else if(nrobtn==2){this.btncolor2='green';}
              else if(nrobtn==3){this.btncolor3='green';}
              else if(nrobtn==4){this.btncolor4='green';}
-             
+             this.vibration.vibrate(500); 
+             console.info("se escucha?");
+             this.audioBTN.play('ok',() => console.log('ok is done playing'));
+             console.info("se escucho?");
           }
           else{ 
             this.ContNoOK++;
@@ -139,7 +145,7 @@ export class juego
             else if(nrobtn==2){this.btncolor2='red';}
             else if(nrobtn==3){this.btncolor3='red';}
             else if(nrobtn==4){this.btncolor4='red';}
-            this.vibration.vibrate(500);   
+            this.vibration.vibrate([200,50,200]);   
           }
 
       
