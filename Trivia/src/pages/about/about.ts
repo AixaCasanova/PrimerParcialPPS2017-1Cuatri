@@ -20,13 +20,19 @@ UltimosRes: FirebaseListObservable<any[]>;
     constructor(public navCtrl: NavController, af: AngularFire) 
     {
         
-        this.UltimosRes = af.database.list('/pr');
-
+         this.UltimosRes = af.database.list('/pr', {
+            query: {
+                limitToLast: 5,
+                orderByKey: true
+            }
+            }); 
         console.info(this.UltimosRes);
        
        this.UltimosRes.forEach(element => {
             console.log(element);
            
+
+
        });
    
        

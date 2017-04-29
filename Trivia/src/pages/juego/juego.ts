@@ -18,7 +18,7 @@ export class juego
 {
 
   //variables
-
+    unafecha;
     contador=1;
     pregunta ="pregu";
     r1="rta";
@@ -76,16 +76,21 @@ export class juego
      nombre:any;
      vib:any;
   //
+
+ 
     constructor(public navCtrl: NavController,public vibration:Vibration,public http: Http, private nativeAudio: NativeAudio, param:NavParams, af: AngularFire) 
     {
+      this.unafecha = Date();
+        console.info(this.unafecha.toString()); 
       this.verPreguntaYResp();
       this.usuarios = af.database.list('/usuarios');
       this.lsrpr=af.database.list("/pr");
       console.info();
       console.info("el nombre es:"+param.data);
        this.nombre=param.data;
-        this.usr={"nombre":this.nombre,
-          "fecha":Date.now()};
+       // this.usr={"nombre":this.nombre,"fecha":Date.now()};
+    this.usr={"nombre":this.nombre,"fecha":this.unafecha.toString()};
+
       this.usuarios.push(this.usr); 
       this.vib=vibration;       
        
@@ -146,6 +151,8 @@ export class juego
 
          
          if(this.contador > 5){
+           console.info(this.listaPregResp);
+           console.info(this.usr);
            this.lsrpr.push({"pregyresp":this.listaPregResp,"usr":this.usr});
            console.info(this.listaPregResp);         
            this.veo=false;        

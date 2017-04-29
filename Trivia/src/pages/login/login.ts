@@ -13,12 +13,12 @@ import { juego } from '../juego/juego';
 export class login 
 {
 
-   
-    
+ 
     constructor(public navCtrl: NavController, public http: Http )//, af: AngularFire 
     {
-         
         
+      
+          
     }
  
     Unusuario = {};
