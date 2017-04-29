@@ -7,6 +7,7 @@ import { NativeAudio } from '@ionic-native/native-audio';
 import {AngularFire, FirebaseListObservable} from 'angularfire2';
 import {firebaseconfig} from '../firebase/';
 import { Vibration } from '@ionic-native/vibration';
+import { usr } from './';
 
 @Component({
   selector: 'juego',
@@ -15,6 +16,9 @@ import { Vibration } from '@ionic-native/vibration';
 
 export class juego 
 {
+
+  //variables
+
     contador=1;
     pregunta ="pregu";
     r1="rta";
@@ -67,11 +71,12 @@ export class juego
       4:{r1:"2001",r2:"2003",r3:"2006",r4:"2007"},
       5:{r1:"Veinticinco",r2:"Diez",r3:"Cinco",r4:"Veinte"}       
     };
-    listaUbdd={};
+    listaUbdd:Array<any>;
+    listaPregResp:Array<any>=[];
      nombre:any;
      vib:any;
-
-    constructor(public navCtrl: NavController,public vibration:Vibration, public http: Http, private nativeAudio: NativeAudio, param:NavParams, af: AngularFire) 
+  //
+    constructor(public navCtrl: NavController,public vibration:Vibration,public http: Http, private nativeAudio: NativeAudio, param:NavParams, af: AngularFire) 
     {
       this.verPreguntaYResp();
       this.usuarios = af.database.list('/usuarios');
@@ -82,15 +87,22 @@ export class juego
         this.usr={"nombre":this.nombre,
           "fecha":Date.now()};
       this.usuarios.push(this.usr); 
-      this.vib=vibration;
-        
-     
+      this.vib=vibration;       
+       
     }
+    
    
     verResp(pregu,re,nrobtn)
-    {    
-      this.lsrpr.push({"pr":pregu,"re":re,"usuario":this.nombre});
+    {  
+      
+      //console.info(this.listaPregResp);
+     
+    this.listaPregResp[this.contador]={"pr": pregu ,"re": re};
+     //this.listaPregResp["prre"]+= pregu + re + "</br>";
+      //  console.info( this.listaPregResp);
+       // this.lsrpr.push({"pr":pregu,"re":re,"usuario":this.nombre});
       console.info("empieza con: "+this.contador);
+  
       if(this.contador <= 5)
       {
           for (let preg in this.listaPreguntas) 
@@ -108,6 +120,7 @@ export class juego
 
           if(this.banderaOk==true)
           {
+           
             this.ContOK++;
              if(nrobtn==1){this.btncolor1='green';}
              else if(nrobtn==2){this.btncolor2='green';}
@@ -133,6 +146,8 @@ export class juego
 
          
          if(this.contador > 5){
+           this.lsrpr.push({"pregyresp":this.listaPregResp,"usr":this.usr});
+           console.info(this.listaPregResp);         
            this.veo=false;        
            this.veoini=false;
            this.veoFin=true;
@@ -140,9 +155,10 @@ export class juego
            this.resultNoOK="Incorrectas: " + this.ContNoOK;
          } else
          {
+          // this.lsrpr.push({"pregyresp":pregu + re,"usr":this.usr});
             var currenttime:number=setTimeout(()=>{
             this.verPreguntaYResp();
-            },1000);
+            },500);
          }
 
 

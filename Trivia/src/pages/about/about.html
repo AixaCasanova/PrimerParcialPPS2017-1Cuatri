@@ -8,4 +8,36 @@
 
 <ion-content padding>
 
+<!--
+<table style="width:100%" border="2"> 
+    <tr>
+            <th>Nombre</th>
+            <th>preg</th> 
+            <th>resp</th>
+    </tr>
+      <tr>
+ 
+      </tr>
+</table>    
+ -->
+ 
+
+     <ul *ngFor="let item of UltimosRes | async"> 
+          
+             {{item.usr.nombre}} <br>
+            <!-- 
+            {{item.pregyresp[1].pr}} 
+             {{item.pregyresp[1].re}}<br><br>
+              {{item.pregyresp[2].pr}}
+             {{item.pregyresp[2].re}} -->
+ 
+       <ul *ngFor="let item2 of item.pregyresp"> 
+          <p  *ngIf="item2" >   {{item2.pr }} {{item2.re }}</p>
+             </ul> 
+    
+      </ul>
+       
+
+  
+
 </ion-content>
