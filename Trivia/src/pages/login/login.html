@@ -1,6 +1,6 @@
 <ion-header >
 
-  <ion-navbar class="top-rated" > 
+  <ion-navbar class="barr" > 
 Ingrese al Juego      
   </ion-navbar>
 
@@ -8,16 +8,9 @@ Ingrese al Juego
 </ion-header>
  
 <ion-content padding  align=center  > 
-   usuario: <input type="text"  name="usuario" [(ngModel)]="Unusuario.usuario" id="usuario"><br><br>
-   <!--password: <input type="password"  name="password"  [(ngModel)]="Unusuario.password" id="password"><br><br>-->
-   <input type="submit" (click)="loguear()" value="Ingresar">
-<!--
- <ul>
-    <li *ngFor="let item of items | async">
-      {{ item.name }}
-    </li>
-  </ul>
---> 
+   usuario: <input type="text" class="barr" name="usuario" [(ngModel)]="Unusuario.usuario" id="usuario"><br><br>
+   <input type="submit" (click)="loguear()" value="Jugar!" style="border-radius:30px">
+   
 
 </ion-content>
  

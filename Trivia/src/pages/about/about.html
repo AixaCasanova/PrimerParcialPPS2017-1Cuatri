@@ -1,8 +1,8 @@
 <ion-header>
-  <ion-navbar>
-    <ion-title>
+  <ion-navbar class="barr">
+    
       Ultimas Preguntas y respuestas
-    </ion-title>
+
   </ion-navbar>
 </ion-header>
 
@@ -13,7 +13,7 @@
              <h2>{{item.usr.nombre}}</h2>{{item.usr.fecha}}<br>
  
        <ul *ngFor="let item2 of item.pregyresp"> 
-          <p  *ngIf="item2" > <strong>{{item2.pr }} : </strong> {{item2.re }}</p>
+          <p  *ngIf="item2" > <strong>{{item2.pr }}: </strong> {{item2.re }}</p>
              </ul> 
     
       </ul>

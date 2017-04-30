@@ -77,13 +77,18 @@ export class juego
      vib:any;
      audioBTN;
   //
+  
+  //var color
+
+  btnColorOk="green";
+    btnColorErr="red";
+     //
 
  
     constructor(public navCtrl: NavController,public vibration:Vibration ,public http: Http, private nativeAudio: NativeAudio, param:NavParams, af: AngularFire) 
     {
       this.audioBTN=nativeAudio;
-      this.audioBTN.preloadSimple('ok', 'assets/sound.mp3');
-
+      this.audioBTN.preloadSimple('ok', '../assets/sound.mp3');
       this.unafecha = Date();
       console.info(this.unafecha.toString()); 
       this.verPreguntaYResp();
@@ -129,23 +134,24 @@ export class juego
 
           if(this.banderaOk==true)
           {
-           
+            console.info(this.contador);
             this.ContOK++;
-             if(nrobtn==1){this.btncolor1='green';}
-             else if(nrobtn==2){this.btncolor2='green';}
-             else if(nrobtn==3){this.btncolor3='green';}
-             else if(nrobtn==4){this.btncolor4='green';}
-             this.vibration.vibrate(400); 
+             if(nrobtn==1){this.btncolor1=this.btnColorOk;}
+             else if(nrobtn==2){this.btncolor2=this.btnColorOk;}
+             else if(nrobtn==3){this.btncolor3=this.btnColorOk;}
+             else if(nrobtn==4){this.btncolor4=this.btnColorOk;}
+             this.vibration.vibrate(300); 
              console.info("se escucha?");
              this.audioBTN.play('ok',() => console.log('ok is done playing'));
              console.info("se escucho?");
           }
           else{ 
+            console.info(this.contador);
             this.ContNoOK++;
-            if(nrobtn==1){this.btncolor1='red';}
-            else if(nrobtn==2){this.btncolor2='red';}
-            else if(nrobtn==3){this.btncolor3='red';}
-            else if(nrobtn==4){this.btncolor4='red';}
+            if(nrobtn==1){this.btncolor1=this.btnColorErr;}
+            else if(nrobtn==2){this.btncolor2=this.btnColorErr;}
+            else if(nrobtn==3){this.btncolor3=this.btnColorErr;}
+            else if(nrobtn==4){this.btncolor4=this.btnColorErr;}
             this.vibration.vibrate([100,100,100]);   
           }
 
@@ -155,21 +161,24 @@ export class juego
 
              this.veo=true; 
         } 
-
-         
+ 
          if(this.contador > 5){
-           console.info(this.listaPregResp);
-           console.info(this.usr);
-           this.lsrpr.push({"pregyresp":this.listaPregResp,"usr":this.usr});
-           console.info(this.listaPregResp);         
-           this.veo=false;        
-           this.veoini=false;
-           this.veoFin=true;
-           this.resultOK="Correctas: " + this.ContOK;
-           this.resultNoOK="Incorrectas: " + this.ContNoOK;
+
+            var currenttime:number=setTimeout(()=>{
+                console.info(this.listaPregResp);
+                console.info(this.usr);
+                this.lsrpr.push({"pregyresp":this.listaPregResp,"usr":this.usr});
+                console.info(this.listaPregResp);         
+                this.veo=false;        
+                this.veoini=false;
+                this.veoFin=true;
+                this.resultOK="Correctas: " + this.ContOK;
+                this.resultNoOK="Incorrectas: " + this.ContNoOK;
+           },500);
+           
          } else
          {
-          // this.lsrpr.push({"pregyresp":pregu + re,"usr":this.usr});
+            
             var currenttime:number=setTimeout(()=>{
             this.verPreguntaYResp();
             },500);

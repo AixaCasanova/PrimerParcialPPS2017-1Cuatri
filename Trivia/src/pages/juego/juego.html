@@ -1,6 +1,6 @@
 <ion-header>
  
-  <ion-navbar class="top-rated" > 
+  <ion-navbar class="barr" > 
 Jugador: {{nombre}}    
   </ion-navbar>
 </ion-header>
@@ -9,10 +9,10 @@ Jugador: {{nombre}}
 	<form>
  <div *ngIf=veoini>	
  		<p class="caja"> {{ pregunta }}</p>
-	  	<input type="button" (click)="verResp(pregunta,r1,1)" value={{r1}} [ngStyle]="{'background-color':btncolor1}"><br><br>
-		<input type="button" (click)="verResp(pregunta,r2,2)" value={{r2}} [ngStyle]="{'background-color':btncolor2}"><br><br>
-		<input type="button" (click)="verResp(pregunta,r3,3)" value={{r3}} [ngStyle]="{'background-color':btncolor3}"><br><br>
-		<input type="button" (click)="verResp(pregunta,r4,4)" value={{r4}} [ngStyle]="{'background-color':btncolor4}"><br><br>
+	  <input type="button" (click)="verResp(pregunta,r1,1)" value={{r1}} [ngStyle]="{'background-color':btncolor1}" style="border-radius:42px" ><br><br>
+		<input type="button" (click)="verResp(pregunta,r2,2)" value={{r2}} [ngStyle]="{'background-color':btncolor2}" style="border-radius:42px"><br><br>
+		<input type="button" (click)="verResp(pregunta,r3,3)" value={{r3}} [ngStyle]="{'background-color':btncolor3}" style="border-radius:42px"><br><br>
+		<input type="button" (click)="verResp(pregunta,r4,4)" value={{r4}} [ngStyle]="{'background-color':btncolor4}" style="border-radius:42px"><br><br>
   </div>
 
  <div *ngIf=veo align=center>	 
@@ -22,7 +22,7 @@ Jugador: {{nombre}}
  <div *ngIf=veoFin align=center>	 
 		{{resultOK}}<br><br>
 		{{resultNoOK}}<br><br>
-		<input type="button" (click)=volverAEmpezar() value="Volver">
+		<input type="button" (click)=volverAEmpezar() value="Volver" style="border-radius:30px" >
  </div>
 
 <!--<li *ngFor="let item of usuarios|async">{{item.nombre}}</li>-->
