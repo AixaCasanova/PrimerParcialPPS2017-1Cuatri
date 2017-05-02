@@ -1,16 +1,14 @@
-<ion-header >
-
-  <ion-navbar class="top-rated" > 
-Ingrese al Juego      
-  </ion-navbar>
-
-
+<ion-header class=miclase>
+    <ion-title>
+      Ingrese al juego
+    </ion-title>
 </ion-header>
 
-<ion-content padding  align=center>
 
-   usuario: <input type="text"  name="usuario" [(ngModel)]="NombreUss" id="usuario"><br><br>
-   <input type="submit" (click)="loguear(NombreUss)" value="Ingresar">
+<ion-content padding  align=center class=otraclase>
+
+   usuario: <input type="text"  name="usuario" [(ngModel)]="NombreUss" id="usuario" class=mitext><br><br>
+   <input type="submit" (click)="loguear(NombreUss)" value="Ingresar" class=myButton>
 
 
  

@@ -2,7 +2,8 @@ import { Component, OnInit, OnDestroy  } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { HomePage } from '../home/home';;
 import { DeviceMotion, DeviceMotionAccelerationData } from '@ionic-native/device-motion';
-
+import {AngularFire, FirebaseListObservable} from 'angularfire2';
+import {firebaseconfig} from '../firebase/';
 
 @Component({
   selector: 'page-juego',
@@ -26,9 +27,13 @@ export class juego {
     anchoDeFoto:any;
     altoDeFoto:any;
     aceleracion:any;
+    Lusuarios: FirebaseListObservable<any[]>;
+    resultadoJugada:any;
 
-  constructor(public navCtrl: NavController, private navParams : NavParams, private deviceMotion: DeviceMotion) {
+  constructor(public navCtrl: NavController, private navParams : NavParams, private deviceMotion: DeviceMotion, af: AngularFire) {
+    this.Lusuarios=af.database.list('/usuarios');
     this.NombreUss=navParams.data;
+    this.Lusuarios.push(this.NombreUss); 
     console.log(navParams);
     this.options={ frequency: 1000 };
     this.pantallaAncho = window.screen.width;
@@ -97,14 +102,17 @@ export class juego {
           if (this.OpcMaq=="piedra")
           {
             this.ContGral--;
+            this.resultadoJugada="Empate!";
           }
           else if (this.OpcMaq=="papel")
           {
             this.ContMaq++;
+            this.resultadoJugada="Gana la maquina!"
           }
           else if (this.OpcMaq=="tijera")
           {
             this.ContUsr++;
+            this.resultadoJugada="Gana usted!"
           }
         }
         else if(OpcUsr=="papel")
@@ -113,14 +121,17 @@ export class juego {
           if (this.OpcMaq=="piedra")
           {
             this.ContUsr++;
+            this.resultadoJugada="Gana usted!"
           }
           else if (this.OpcMaq=="papel")
           {
             this.ContGral--;
+            this.resultadoJugada="Empate!"
           }
           else if (this.OpcMaq=="tijera")
           {
             this.ContMaq++;
+            this.resultadoJugada="Gana la maquina!"
           }
         }
         else if(OpcUsr=="tijera")
@@ -129,14 +140,17 @@ export class juego {
           if (this.OpcMaq=="piedra")
           {
             this.ContMaq++;
+            this.resultadoJugada="Gana la maquina!"
           }
           else if (this.OpcMaq=="papel")
           {
             this.ContUsr++;
+            this.resultadoJugada="Gana usted!"
           }
           else if (this.OpcMaq=="tijera")
           {
             this.ContGral--;
+            this.resultadoJugada="Empate!"
           }
         }
         this.ContGral++;  
@@ -164,6 +178,7 @@ export class juego {
       {
 
         this.img2="assets/img/ganador.jpg";
+        
       }else
       { 
 
@@ -176,6 +191,12 @@ export class juego {
 
 
   this.veoini=true;
+
+   var currenttime:number=setTimeout(()=>{
+            this.YaJugue();
+          },1500);
+          
+
 }
 
 VEmpezar()

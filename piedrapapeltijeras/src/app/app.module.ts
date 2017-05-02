@@ -12,6 +12,8 @@ import { juego } from '../pages/juego/juego';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { DeviceMotion, DeviceMotionAccelerationData } from '@ionic-native/device-motion';
+import {firebaseconfig} from '../pages/firebase/firebaseconfig';
+import {AngularFireModule} from 'angularfire2';
 
 
 @NgModule({
@@ -25,7 +27,9 @@ import { DeviceMotion, DeviceMotionAccelerationData } from '@ionic-native/device
   ],
   imports: [
     BrowserModule,
-    IonicModule.forRoot(MyApp)
+    IonicModule.forRoot(MyApp),
+    AngularFireModule.initializeApp(firebaseconfig),
+  
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -40,6 +44,7 @@ import { DeviceMotion, DeviceMotionAccelerationData } from '@ionic-native/device
     StatusBar,
     SplashScreen,
     DeviceMotion,
+    AngularFireModule,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })
