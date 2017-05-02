@@ -88,7 +88,8 @@ export class juego
     constructor(public navCtrl: NavController,public vibration:Vibration ,public http: Http, private nativeAudio: NativeAudio, param:NavParams, af: AngularFire) 
     {
       this.audioBTN=nativeAudio;
-      this.audioBTN.preloadSimple('ok', '../assets/sound.mp3');
+      this.audioBTN.preloadSimple('ok', '../assets/resok2.wav');
+      this.audioBTN.preloadSimple('nook', '../assets/resNook1.wav');
       this.unafecha = Date();
       console.info(this.unafecha.toString()); 
       this.verPreguntaYResp();
@@ -143,7 +144,7 @@ export class juego
              this.vibration.vibrate(300); 
              console.info("se escucha?");
              this.audioBTN.play('ok',() => console.log('ok is done playing'));
-             console.info("se escucho?");
+            
           }
           else{ 
             console.info(this.contador);
@@ -153,6 +154,8 @@ export class juego
             else if(nrobtn==3){this.btncolor3=this.btnColorErr;}
             else if(nrobtn==4){this.btncolor4=this.btnColorErr;}
             this.vibration.vibrate([100,100,100]);   
+            this.audioBTN.play('nook',() => console.log('nook is done playing'));
+            
           }
 
       

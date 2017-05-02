@@ -1,6 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, OnDestroy  } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { HomePage } from '../home/home';;
+import { DeviceMotion, DeviceMotionAccelerationData } from '@ionic-native/device-motion';
+
 
 @Component({
   selector: 'page-juego',
@@ -10,12 +12,52 @@ export class juego {
  
  
   NombreUss:any;
-  constructor(public navCtrl: NavController, private navParams : NavParams) {
-  this.NombreUss=navParams.data;
-  console.log(navParams);
+
+    subscription:any;
+    options:any;
+    x:Number;
+    y:number;
+    z:number;
+    pantallaAncho:number;
+    pantallaAlto :number;
+    arriba:number;
+    izquierda:number;
+    rutaDeFoto:any;
+    anchoDeFoto:any;
+    altoDeFoto:any;
+    aceleracion:any;
+
+  constructor(public navCtrl: NavController, private navParams : NavParams, private deviceMotion: DeviceMotion) {
+    this.NombreUss=navParams.data;
+    console.log(navParams);
+    this.options={ frequency: 1000 };
+    this.pantallaAncho = window.screen.width;
+    this.pantallaAlto = window.screen.height;
+    this.rutaDeFoto="assets/img/piedra.jpg";
+    this.anchoDeFoto=80;
   }
 
-  
+  ngOnInit()    {  
+    this.arriba=0;
+    this.izquierda=0;
+    try {
+          this.subscription = this.deviceMotion.watchAcceleration(this.options).subscribe((aceleracion: DeviceMotionAccelerationData) => {
+            this.x= aceleracion.x;
+            this.y= aceleracion.y;
+            this.z= aceleracion.z; 
+            if((aceleracion.x < -9 || aceleracion.x > 9 ) || (aceleracion.y > -3 && aceleracion.y < 3) ){this.anchoDeFoto=100;this.altoDeFoto=100;}else{this.anchoDeFoto=50; this.altoDeFoto=50;}
+            
+          });
+    }catch(error)
+    { console.log(error); }
+       
+   }
+    ngOnDestroy() {
+     this.subscription.unsubscribe(); 
+    } 
+
+
+  vermaq:boolean=false;
   veoTodo:boolean=true;
   veoTodo2:boolean=false
   randomOpcUsr=["piedra","papel","tijera"];
@@ -33,6 +75,7 @@ export class juego {
 
   YaJugue()
   {
+    this.vermaq=false;
     this.veoini=false;
     this.img = "assets/img/SPregunta.png";
     this.veoVos1=true;
@@ -40,6 +83,7 @@ export class juego {
   }
   Jugar(OpcUsr)
   {
+    this.vermaq=true;
     this.veoVos1=false;
     this.veoVos2=true;
     this.num = Math.floor(Math.random() * 3);  

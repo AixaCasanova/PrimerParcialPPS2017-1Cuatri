@@ -1,44 +1,43 @@
 <ion-header>
   <ion-navbar>
-    <ion-title align=center>
-      {{NombreUss}}
-    </ion-title>
+    <ion-title align=left>
+       Jugador:{{NombreUss}}     <br>         
+                Maquina:{{ContMaq}}<br>
+                Vos:{{ContUsr}}
+     </ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding align=center>
 
 <form>
-
   <br><br>
 
   <div *ngIf=veoTodo>	
      Vos:<br><br>
      <div *ngIf=veoVos1>	
-        
-        <button (click)="Jugar('piedra')"><img src="assets/img/piedra.jpg" width=50 height=50> </button>
-        <button (click)="Jugar('papel')"><img src="assets/img/papel.jpg" width=50 height=50> </button>
-        <button (click)="Jugar('tijera')"><img src="assets/img/tijeras.jpg" width=50 height=50> </button>
+       
+        <button (click)="Jugar('piedra')">  <img [ngStyle]="{'width.px':anchoDeFoto, 'height.px':altoDeFoto}" [src]="rutaDeFoto"></button>
+        <button (click)="Jugar('papel')"> <img [ngStyle]="{'width.px':anchoDeFoto, 'height.px':altoDeFoto}" src="assets/img/papel.jpg"> </button>
+        <button (click)="Jugar('tijera')"> <img [ngStyle]="{'width.px':anchoDeFoto, 'height.px':altoDeFoto}" src="assets/img/tijeras.jpg"> </button>
         <br><br>
       </div>
 
       <div *ngIf=veoVos2>
-       <img  [src]="imgElect" width=50 height=50>
+       <img  [src]="imgElect" [ngStyle]="{'width.px':anchoDeFoto}">
       </div>
-
+        <div *ngIf="vermaq">
         La maquina:<br><br>
-        <img  [src]="img" width=50 height=50>
+       <img  [src]="img" [ngStyle]="{'width.px':anchoDeFoto}">
         <br><br>
+        </div>
         <div *ngIf=veoini>	
           <input type="button" value="Siguiente Ronda!" (click)="YaJugue()">
         </div>
         <br><br>
     
   </div>
-  <table border="2" align=center><br><br>
-    Maquina:{{ContMaq}}<br><br>
-    Vos:{{ContUsr}}<br><br>
-  </table>
+  
   <div *ngIf=veoTodo2>	
      <br><br>
     <img [src]="img2" width=200 height=200><br><br>
