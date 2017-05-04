@@ -11,7 +11,6 @@ import { juego } from '../pages/juego/juego';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
-import { DeviceMotion, DeviceMotionAccelerationData } from '@ionic-native/device-motion';
 import {firebaseconfig} from '../pages/firebase/firebaseconfig';
 import {AngularFireModule} from 'angularfire2';
 
@@ -43,7 +42,6 @@ import {AngularFireModule} from 'angularfire2';
   providers: [
     StatusBar,
     SplashScreen,
-    DeviceMotion,
     AngularFireModule,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]

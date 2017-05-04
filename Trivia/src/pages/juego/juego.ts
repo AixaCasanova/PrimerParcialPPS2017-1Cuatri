@@ -88,8 +88,8 @@ export class juego
     constructor(public navCtrl: NavController,public vibration:Vibration ,public http: Http, private nativeAudio: NativeAudio, param:NavParams, af: AngularFire) 
     {
       this.audioBTN=nativeAudio;
-      this.audioBTN.preloadSimple('ok', '../assets/resok2.wav');
-      this.audioBTN.preloadSimple('nook', '../assets/resNook1.wav');
+      this.audioBTN.preloadSimple('ok', 'assets/resok2.mp3');
+      this.audioBTN.preloadSimple('nook', 'assets/resNook1.mp3');
       this.unafecha = Date();
       console.info(this.unafecha.toString()); 
       this.verPreguntaYResp();
@@ -184,7 +184,7 @@ export class juego
             
             var currenttime:number=setTimeout(()=>{
             this.verPreguntaYResp();
-            },500);
+            },800);
          }
 
 

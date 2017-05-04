@@ -1,27 +1,28 @@
-<ion-header class=miclase>
-  
-    <ion-title align=left>
-        Jugador:{{NombreUss}}     
-     </ion-title>
-
+<ion-header>
+  <ion-toolbar color="secondary">
+    <ion-title align=center>        Jugador:{{NombreUss}}   </ion-title>
+  </ion-toolbar>
 </ion-header>
 
-<ion-content padding align=center class=otraclase>
-<form>
-  <div align=left>
-    Maquina:{{ContMaq}}<br>
-    Vos:{{ContUsr}}
-  </div>
-  <br><br>
 
+<ion-content padding align=center>
+<form>
+ 
+<ion-card>
+    Maquina:{{ContMaq}}<br>
+     Vos:{{ContUsr}}
+</ion-card>
+
+  <br><br>
+ 
   <div *ngIf=veoTodo>	
      Tu eleccion:<br><br>
      <div *ngIf=veoVos1>	
-       
-        <button (click)="Jugar('piedra')" style="border-radius:22px;">  <img style="border-radius:22px;" [ngStyle]="{'width.px':anchoDeFoto, 'height.px':altoDeFoto}" [src]="rutaDeFoto"></button>
-        <button (click)="Jugar('papel')" style="border-radius:22px;"> <img style="border-radius:22px;" [ngStyle]="{'width.px':anchoDeFoto, 'height.px':altoDeFoto}" src="assets/img/papel.jpg"> </button>
-        <button (click)="Jugar('tijera')" style="border-radius:22px;" > <img style="border-radius:22px;" [ngStyle]="{'width.px':anchoDeFoto, 'height.px':altoDeFoto}" src="assets/img/tijeras.jpg"> </button>
-        <br><br>
+       <button ion-button color="light" (click)="Jugar('piedra')" large><img style="border-radius:22px;" [ngStyle]="{'width.px':anchoDeFoto, 'height.px':altoDeFoto}" [src]="rutaDeFoto"></button>
+       <button ion-button color="light" (click)="Jugar('papel')"  large><img style="border-radius:22px;" [ngStyle]="{'width.px':anchoDeFoto, 'height.px':altoDeFoto}" src="assets/img/papel.jpg"></button>  
+       <button ion-button color="light" (click)="Jugar('tijera')" large><img style="border-radius:22px;" [ngStyle]="{'width.px':anchoDeFoto, 'height.px':altoDeFoto}" src="assets/img/tijeras.jpg"></button>
+      
+      <br><br>
       </div>
 
       <div *ngIf=veoVos2>
@@ -43,7 +44,8 @@
   <div *ngIf=veoTodo2>	
      <br><br>
     <img [src]="img2" style="border-radius:15px;" width=200 height=200><br><br>
-    <input type="button" value="Volver a empezar!" class=myButton (click)="VEmpezar()">
+    <button ion-button color="secondary" (click)="VEmpezar()">Volver a empezar!</button>
+
   </div>
 </form>
 
