@@ -24,7 +24,7 @@ export class juego {
   constructor(public navCtrl: NavController, private navParams : NavParams, af: AngularFire) {
     this.Lusuarios=af.database.list('/usuarios');
     this.NombreUss=navParams.data;
-    this.Lusuarios.push(this.NombreUss); 
+    //this.Lusuarios.push(this.NombreUss); 
     console.log(navParams);
     this.rutaDeFoto="assets/img/piedra.jpg";
  
@@ -149,11 +149,13 @@ export class juego {
       {
 
         this.img2="assets/img/ganador.jpg";
-        
+        this.Lusuarios.push({nombre:this.NombreUss, jugada:"ganada", puntosMaq:this.ContMaq, puntosUsr:this.ContUsr});
       }else
       { 
 
         this.img2="assets/img/perdedor.jpg";
+          this.Lusuarios.push({nombre:this.NombreUss, jugada:"perdida", puntosMaq:this.ContMaq, puntosUsr:this.ContUsr});
+    
       }
     }
      console.info(this.ContGral);

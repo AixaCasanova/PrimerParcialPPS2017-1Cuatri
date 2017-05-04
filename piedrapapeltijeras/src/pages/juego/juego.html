@@ -26,11 +26,15 @@
       </div>
 
       <div *ngIf=veoVos2>
-       <img  [src]="imgElect" style="border-radius:22px;" [ngStyle]="{'width.px':anchoDeFoto}">
+     
+          <img  [src]="imgElect" style="border-radius:22px; box-shadow: 2px 2px 5px #999;" [ngStyle]="{'width.px':anchoDeFoto}">
+ 
       </div>
         <div *ngIf="vermaq">
-        La maquina:<br><br>
-       <img  [src]="img" style="border-radius:22px;" [ngStyle]="{'width.px':anchoDeFoto}">
+          La maquina:<br><br>
+     
+            <img align=center [src]="img" style="border-radius:22px; box-shadow: 2px 2px 5px #999;" [ngStyle]="{'width.px':anchoDeFoto}">
+         
         <br><br>
         </div>
         <div *ngIf=veoini>	
