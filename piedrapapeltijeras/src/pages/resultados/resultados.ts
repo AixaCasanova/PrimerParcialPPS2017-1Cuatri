@@ -16,7 +16,7 @@ export class resultados {
 
   constructor(public navCtrl: NavController, private navParams : NavParams, public viewCtrl: ViewController, af: AngularFire ) {
    
-
+    
     console.info(navParams.data);
     if(navParams.data=='tds'){
         this.titulo="Ultimas 5 jugadas";

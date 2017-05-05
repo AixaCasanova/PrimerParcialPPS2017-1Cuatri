@@ -9,7 +9,7 @@ import { NavController, ModalController  } from 'ionic-angular';
 export class ContactPage {
 
   constructor(public navCtrl: NavController, public modalCtrl: ModalController) {
-
+    
   }
 
 presentModal(event) {
