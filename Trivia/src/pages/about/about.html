@@ -11,7 +11,7 @@
              <ion-card>     
                 <ion-card-header>{{item.usr.nombre}}</ion-card-header>{{item.usr.fecha}}<br>
                 <ul *ngFor="let item2 of item.pregyresp"> 
-                    <p  *ngIf="item2" > <strong>{{item2.pr }}: </strong> {{item2.re }}</p>
+                    <p  *ngIf="item2" > <strong>{{item2.pr }}:<br> </strong> {{item2.re }}</p>
                 </ul> 
               </ion-card>
         </ul>
