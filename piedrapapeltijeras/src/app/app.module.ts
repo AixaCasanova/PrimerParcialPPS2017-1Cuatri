@@ -14,6 +14,8 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import {firebaseconfig} from '../pages/firebase/firebaseconfig';
 import {AngularFireModule} from 'angularfire2';
+import { NativeAudio } from '@ionic-native/native-audio';
+import { Vibration } from '@ionic-native/vibration';
 
 
 @NgModule({
@@ -46,6 +48,8 @@ import {AngularFireModule} from 'angularfire2';
     StatusBar,
     SplashScreen,
     AngularFireModule,
+    NativeAudio,
+    Vibration,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })

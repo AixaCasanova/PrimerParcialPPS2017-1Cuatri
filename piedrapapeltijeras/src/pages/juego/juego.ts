@@ -3,6 +3,9 @@ import { NavController, NavParams } from 'ionic-angular';
 import { HomePage } from '../home/home';
 import {AngularFire, FirebaseListObservable} from 'angularfire2';
 import {firebaseconfig} from '../firebase/';
+import { NativeAudio } from '@ionic-native/native-audio';
+import { Vibration } from '@ionic-native/vibration';
+
 
 @Component({
   selector: 'page-juego',
@@ -37,9 +40,11 @@ export class juego {
     img = "assets/img/SPregunta.png";
     unafecha;
     res;
+    audioBTN;
+    vib;
   //fin variables
 
-  constructor(public navCtrl: NavController, private navParams : NavParams, af: AngularFire) {
+  constructor(public navCtrl: NavController, private navParams : NavParams, af: AngularFire, nativeAudio:NativeAudio,vibration:Vibration) {
     this.Lusuarios=af.database.list('/usuarios');
     this.NombreUss=navParams.data;
     //this.Lusuarios.push(this.NombreUss); 
@@ -47,6 +52,12 @@ export class juego {
     this.rutaDeFoto="assets/img/piedra.jpg";
     this.unafecha = Date();
     console.info(this.unafecha.toString());
+    this.audioBTN=nativeAudio;
+    this.audioBTN.preloadSimple('ok', 'assets/oksound.mp3');
+    this.audioBTN.preloadSimple('nook', 'assets/errorsound.mp3');
+    this.audioBTN.preloadSimple('empate', 'assets/highhat.mp3');
+    
+    this.vib=vibration;
   }
 
 
@@ -67,16 +78,22 @@ export class juego {
           if (this.OpcMaq=="piedra")
           {
             this.resultadoJugada="Empate!";
+            this.audioBTN.play('empate');
           }
           else if (this.OpcMaq=="papel")
           {
             this.ContMaq++;
-            this.resultadoJugada="Gana la maquina!"
+            this.resultadoJugada="Gana la maquina!";
+            this.audioBTN.play('nook');
+            this.vib.vibrate([200,200,200]);
+            
           }
           else if (this.OpcMaq=="tijera")
           {
             this.ContUsr++;
-            this.resultadoJugada="Gana usted!"
+            this.resultadoJugada="Gana usted!";
+            this.audioBTN.play('ok');
+            this.vib.vibrate(500);
           }
         }
         else if(OpcUsr=="papel")
@@ -85,16 +102,21 @@ export class juego {
           if (this.OpcMaq=="piedra")
           {
             this.ContUsr++;
-            this.resultadoJugada="Gana usted!"
+            this.resultadoJugada="Gana usted!";
+            this.audioBTN.play('ok');
+            this.vib.vibrate(500);
           }
           else if (this.OpcMaq=="papel")
           {
-            this.resultadoJugada="Empate!"
+            this.resultadoJugada="Empate!";
+            this.audioBTN.play('empate');
           }
           else if (this.OpcMaq=="tijera")
           {
             this.ContMaq++;
-            this.resultadoJugada="Gana la maquina!"
+            this.resultadoJugada="Gana la maquina!";
+            this.audioBTN.play('nook');
+            this.vib.vibrate([200,200,200]);
           }
         }
         else if(OpcUsr=="tijera")
@@ -103,16 +125,21 @@ export class juego {
           if (this.OpcMaq=="piedra")
           {
             this.ContMaq++;
-            this.resultadoJugada="Gana la maquina!"
+            this.resultadoJugada="Gana la maquina!";
+            this.audioBTN.play('nook');
+            this.vib.vibrate([200,200,200]);
           }
           else if (this.OpcMaq=="papel")
           {
             this.ContUsr++;
             this.resultadoJugada="Gana usted!"
+            this.audioBTN.play('ok');
+            this.vib.vibrate(500);
           }
           else if (this.OpcMaq=="tijera")
           {
-            this.resultadoJugada="Empate!"
+            this.resultadoJugada="Empate!";
+            this.audioBTN.play('empate');
           }
         }
         this.ContGral++;  
@@ -142,7 +169,8 @@ export class juego {
               this.res="Ganaste!"
               this.img2="assets/img/ganador.jpg";        
               this.Lusuarios.push({nombre:this.NombreUss, jugada:"ganada", puntosMaq:this.ContMaq, puntosUsr:this.ContUsr, fecha:this.unafecha.toString()});
-            }else if (this.ContUsr < this.ContMaq) 
+              
+           }else if (this.ContUsr < this.ContMaq) 
             {  
               this.res="Perdiste!"
               this.img2="assets/img/perdedor.jpg";
@@ -154,7 +182,8 @@ export class juego {
               this.res="Empataste!"
               this.img2="assets/img/empate.png";
               this.Lusuarios.push({nombre:this.NombreUss, jugada:"empatada", puntosMaq:this.ContMaq, puntosUsr:this.ContUsr, fecha:this.unafecha.toString()});
-            }
+            
+           }
       },2000);
     }
      console.info(this.ContGral);
