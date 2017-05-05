@@ -9,8 +9,8 @@
   <ion-item>
     <ion-label stacked color="dark">Nombre</ion-label> 
     <ion-input  [(ngModel)]="Unusuario.usuario"  type="text" color="dark"></ion-input>
-  </ion-item>
-    <button ion-button color="dark" (click)="loguear()">Jugar!</button>
+  </ion-item> 
+    <button ion-button color="dark" (click)="loguear()" *ngIf="Unusuario.usuario">Jugar!</button>
 
 </ion-content>
  

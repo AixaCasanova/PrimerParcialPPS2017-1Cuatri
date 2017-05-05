@@ -76,6 +76,7 @@ export class juego
      nombre:any;
      vib:any;
      audioBTN;
+     estado:boolean=false;
   //
   
   //var color
@@ -135,6 +136,7 @@ export class juego
 
           if(this.banderaOk==true)
           {
+            this.estado=true;
             console.info(this.contador);
             this.ContOK++;
              if(nrobtn==1){this.btncolor1=this.btnColorOk;}
@@ -147,6 +149,7 @@ export class juego
             
           }
           else{ 
+            this.estado=true;
             console.info(this.contador);
             this.ContNoOK++;
             if(nrobtn==1){this.btncolor1="danger";}
@@ -193,7 +196,7 @@ export class juego
 
       verPreguntaYResp()
       {
-
+        this.estado=false;
         this.pregunta = this.listaPreguntas[this.contador]['pr'];
         this.r1=this.listaRespuestas[this.contador]['r1'];
         this.r2=this.listaRespuestas[this.contador]['r2'];

@@ -13,6 +13,6 @@
       <ion-input type="text" [(ngModel)]="NombreUss"></ion-input>
   </ion-item>
  
-<button ion-button color="secondary" (click)="loguear(NombreUss)">Ingresar</button>
+<button ion-button color="secondary" (click)="loguear(NombreUss)" *ngIf="NombreUss">Ingresar</button>
 </ion-content>
  
