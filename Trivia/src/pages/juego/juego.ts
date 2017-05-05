@@ -80,8 +80,8 @@ export class juego
   
   //var color
 
-  btnColorOk="green";
-    btnColorErr="red";
+  btnColorOk="secondary";
+  btnColorErr="danger";
      //
 
  
@@ -149,7 +149,7 @@ export class juego
           else{ 
             console.info(this.contador);
             this.ContNoOK++;
-            if(nrobtn==1){this.btncolor1=this.btnColorErr;}
+            if(nrobtn==1){this.btncolor1="danger";}
             else if(nrobtn==2){this.btncolor2=this.btnColorErr;}
             else if(nrobtn==3){this.btncolor3=this.btnColorErr;}
             else if(nrobtn==4){this.btncolor4=this.btnColorErr;}
@@ -177,14 +177,14 @@ export class juego
                 this.veoFin=true;
                 this.resultOK="Correctas: " + this.ContOK;
                 this.resultNoOK="Incorrectas: " + this.ContNoOK;
-           },500);
+           },1000);
            
          } else
          {
             
             var currenttime:number=setTimeout(()=>{
             this.verPreguntaYResp();
-            },800);
+            },1000);
          }
 
 

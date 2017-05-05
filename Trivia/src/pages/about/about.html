@@ -1,21 +1,19 @@
 <ion-header>
-  <ion-navbar class="barr">
-    
-      Ultimas Preguntas y respuestas
-
-  </ion-navbar>
+  <ion-toolbar color="dark">
+    <ion-title align=center>Ultimas preguntas y respuestas</ion-title>
+  </ion-toolbar>
 </ion-header>
 
 <ion-content padding>
 
-     <ul *ngFor="let item of UltimosRes | async"> 
-          
-             <h2>{{item.usr.nombre}}</h2>{{item.usr.fecha}}<br>
- 
-       <ul *ngFor="let item2 of item.pregyresp"> 
-          <p  *ngIf="item2" > <strong>{{item2.pr }}: </strong> {{item2.re }}</p>
-             </ul> 
-    
-      </ul>
-
+      
+        <ul *ngFor="let item of UltimosRes | async"> 
+             <ion-card>     
+                <ion-card-header>{{item.usr.nombre}}</ion-card-header>{{item.usr.fecha}}<br>
+                <ul *ngFor="let item2 of item.pregyresp"> 
+                    <p  *ngIf="item2" > <strong>{{item2.pr }}: </strong> {{item2.re }}</p>
+                </ul> 
+              </ion-card>
+        </ul>
+   
 </ion-content>

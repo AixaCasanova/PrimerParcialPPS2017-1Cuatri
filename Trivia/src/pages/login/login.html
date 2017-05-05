@@ -1,16 +1,16 @@
 <ion-header >
-
-  <ion-navbar class="barr" > 
-Ingrese al Juego      
-  </ion-navbar>
-
-
-</ion-header>
+  <ion-toolbar color="dark">
+    <ion-title align=center>Ingrese al Juego</ion-title>
+  </ion-toolbar>
+ </ion-header>
  
 <ion-content padding  align=center  > 
-   usuario: <input type="text" class="barr" name="usuario" [(ngModel)]="Unusuario.usuario" id="usuario"><br><br>
-   <input type="submit" (click)="loguear()" value="Jugar!" style="border-radius:30px">
-   
 
-</ion-content>
+  <ion-item>
+    <ion-label stacked color="dark">Nombre</ion-label> 
+    <ion-input  [(ngModel)]="Unusuario.usuario"  type="text" color="dark"></ion-input>
+  </ion-item>
+    <button ion-button color="dark" (click)="loguear()">Jugar!</button>
+
+</ion-content> 
  
