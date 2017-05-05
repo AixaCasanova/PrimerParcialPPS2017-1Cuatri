@@ -39,15 +39,16 @@
         </div>
         <div *ngIf=veoini>	
          <br> <h1> {{resultadoJugada}} </h1>
-        <!--  <input type="button" value="Siguiente Ronda!" (click)="YaJugue()">-->
-        </div>
+         </div>
         <br><br>
     
   </div>
   
   <div *ngIf=veoTodo2>	
      <br><br>
+    <h2> {{res}} </h2><br>
     <img [src]="img2" style="border-radius:15px;" width=200 height=200><br><br>
+    
     <button ion-button color="secondary" (click)="VEmpezar()">Volver a empezar!</button>
 
   </div>

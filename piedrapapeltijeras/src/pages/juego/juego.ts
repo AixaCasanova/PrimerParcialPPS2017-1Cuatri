@@ -36,6 +36,7 @@ export class juego {
     img2="";
     img = "assets/img/SPregunta.png";
     unafecha;
+    res;
   //fin variables
 
   constructor(public navCtrl: NavController, private navParams : NavParams, af: AngularFire) {
@@ -138,18 +139,19 @@ export class juego {
             console.info("Usuario: "+this.ContUsr);
             if (this.ContUsr > this.ContMaq) 
             {
-
-              this.img2="assets/img/ganador.jpg";
+              this.res="Ganaste!"
+              this.img2="assets/img/ganador.jpg";        
               this.Lusuarios.push({nombre:this.NombreUss, jugada:"ganada", puntosMaq:this.ContMaq, puntosUsr:this.ContUsr, fecha:this.unafecha.toString()});
             }else if (this.ContUsr < this.ContMaq) 
             {  
-
+              this.res="Perdiste!"
               this.img2="assets/img/perdedor.jpg";
+    
                 this.Lusuarios.push({nombre:this.NombreUss, jugada:"perdida", puntosMaq:this.ContMaq, puntosUsr:this.ContUsr, fecha:this.unafecha.toString()});
           
             }else if (this.ContUsr == this.ContMaq) 
             {
-
+              this.res="Empataste!"
               this.img2="assets/img/empate.png";
               this.Lusuarios.push({nombre:this.NombreUss, jugada:"empatada", puntosMaq:this.ContMaq, puntosUsr:this.ContUsr, fecha:this.unafecha.toString()});
             }
