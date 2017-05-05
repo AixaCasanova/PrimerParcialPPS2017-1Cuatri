@@ -14,12 +14,29 @@ export class juego {
   NombreUss:any;
 
     
-    
+  //variables
     rutaDeFoto:any;
     anchoDeFoto:any=50;
     altoDeFoto:any=50;
     Lusuarios: FirebaseListObservable<any[]>;
     resultadoJugada:any;
+    vermaq:boolean=false;
+    veoTodo:boolean=true;
+    veoTodo2:boolean=false
+    randomOpcUsr=["piedra","papel","tijera"];
+    num;
+    OpcMaq="";  
+    ContMaq=0;
+    ContUsr=0;
+    ContGral=0;
+    veoVos1:boolean=true;
+    veoVos2:boolean=false;
+    veoini:boolean = false;
+    imgElect="";
+    img2="";
+    img = "assets/img/SPregunta.png";
+    unafecha;
+  //fin variables
 
   constructor(public navCtrl: NavController, private navParams : NavParams, af: AngularFire) {
     this.Lusuarios=af.database.list('/usuarios');
@@ -27,36 +44,12 @@ export class juego {
     //this.Lusuarios.push(this.NombreUss); 
     console.log(navParams);
     this.rutaDeFoto="assets/img/piedra.jpg";
- 
+    this.unafecha = Date();
+    console.info(this.unafecha.toString());
   }
 
-  
 
 
-  vermaq:boolean=false;
-  veoTodo:boolean=true;
-  veoTodo2:boolean=false
-  randomOpcUsr=["piedra","papel","tijera"];
-  num;
-  OpcMaq="";  
-  ContMaq=0;
-  ContUsr=0;
-  ContGral=0;
-  veoVos1:boolean=true;
-  veoVos2:boolean=false;
-  veoini:boolean = false;
-  imgElect="";
-  img2="";
-  img = "assets/img/SPregunta.png";
-
-  YaJugue()
-  {
-    this.vermaq=false;
-    this.veoini=false;
-    this.img = "assets/img/SPregunta.png";
-    this.veoVos1=true;
-    this.veoVos2=false;
-  }
   Jugar(OpcUsr)
   {
     this.vermaq=true;
@@ -72,7 +65,6 @@ export class juego {
           this.imgElect="assets/img/piedra.jpg";
           if (this.OpcMaq=="piedra")
           {
-            this.ContGral--;
             this.resultadoJugada="Empate!";
           }
           else if (this.OpcMaq=="papel")
@@ -96,7 +88,6 @@ export class juego {
           }
           else if (this.OpcMaq=="papel")
           {
-            this.ContGral--;
             this.resultadoJugada="Empate!"
           }
           else if (this.OpcMaq=="tijera")
@@ -120,7 +111,6 @@ export class juego {
           }
           else if (this.OpcMaq=="tijera")
           {
-            this.ContGral--;
             this.resultadoJugada="Empate!"
           }
         }
@@ -141,22 +131,29 @@ export class juego {
     }
     if(this.ContGral>=3)
     {
-      this.veoTodo=false;
-      this.veoTodo2=true;
-      console.info("Maquina: "+this.ContMaq);
-      console.info("Usuario: "+this.ContUsr);
-      if (this.ContUsr > this.ContMaq) 
-      {
+       var currenttime:number=setTimeout(()=>{
+            this.veoTodo=false;
+            this.veoTodo2=true;
+            console.info("Maquina: "+this.ContMaq);
+            console.info("Usuario: "+this.ContUsr);
+            if (this.ContUsr > this.ContMaq) 
+            {
 
-        this.img2="assets/img/ganador.jpg";
-        this.Lusuarios.push({nombre:this.NombreUss, jugada:"ganada", puntosMaq:this.ContMaq, puntosUsr:this.ContUsr});
-      }else
-      { 
+              this.img2="assets/img/ganador.jpg";
+              this.Lusuarios.push({nombre:this.NombreUss, jugada:"ganada", puntosMaq:this.ContMaq, puntosUsr:this.ContUsr, fecha:this.unafecha.toString()});
+            }else if (this.ContUsr < this.ContMaq) 
+            {  
 
-        this.img2="assets/img/perdedor.jpg";
-          this.Lusuarios.push({nombre:this.NombreUss, jugada:"perdida", puntosMaq:this.ContMaq, puntosUsr:this.ContUsr});
-    
-      }
+              this.img2="assets/img/perdedor.jpg";
+                this.Lusuarios.push({nombre:this.NombreUss, jugada:"perdida", puntosMaq:this.ContMaq, puntosUsr:this.ContUsr, fecha:this.unafecha.toString()});
+          
+            }else if (this.ContUsr == this.ContMaq) 
+            {
+
+              this.img2="assets/img/empate.png";
+              this.Lusuarios.push({nombre:this.NombreUss, jugada:"empatada", puntosMaq:this.ContMaq, puntosUsr:this.ContUsr, fecha:this.unafecha.toString()});
+            }
+      },2000);
     }
      console.info(this.ContGral);
 
@@ -167,10 +164,19 @@ export class juego {
 
    var currenttime:number=setTimeout(()=>{
             this.YaJugue();
-          },1500);
+          },2000);
           
 
 }
+
+  YaJugue()
+  {
+    this.vermaq=false;
+    this.veoini=false;
+    this.veoVos1=true;
+    this.veoVos2=false;
+  }
+
 
 VEmpezar()
 {

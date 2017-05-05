@@ -1,11 +1,20 @@
 <ion-header>
-  <ion-navbar>
-    <ion-title>
-      Resultados
-    </ion-title>
-  </ion-navbar>
+  <ion-toolbar color="secondary">
+    <ion-title align=center>     Resultados </ion-title>
+  </ion-toolbar>
 </ion-header>
 
+
 <ion-content>
+   
+
+<ion-list>
  
+  <ion-item  (click)="presentModal('tds')">Ultimos 5 juegos</ion-item>
+  <ion-item  (click)="presentModal('e')">ultimos diez juegos empatados</ion-item>
+  <ion-item  (click)="presentModal('p')">ultimos diez juegos perdidos</ion-item> 
+  <ion-item  (click)="presentModal('g')">ultimos diez juegos ganados </ion-item>   
+</ion-list>
+
+
 </ion-content>

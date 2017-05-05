@@ -8,6 +8,7 @@ import { ContactPage } from '../pages/contact/contact';
 import { HomePage } from '../pages/home/home';
 import { TabsPage } from '../pages/tabs/tabs';
 import { juego } from '../pages/juego/juego';
+import { resultados } from '../pages/resultados/resultados';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -22,7 +23,8 @@ import {AngularFireModule} from 'angularfire2';
     ContactPage,
     HomePage,
     TabsPage,
-    juego
+    juego,
+    resultados
   ],
   imports: [
     BrowserModule,
@@ -37,7 +39,8 @@ import {AngularFireModule} from 'angularfire2';
     ContactPage,
     HomePage,
     TabsPage,
-    juego
+    juego,
+    resultados
   ],
   providers: [
     StatusBar,

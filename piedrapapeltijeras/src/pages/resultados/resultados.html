@@ -1,0 +1,34 @@
+<ion-header>
+  <ion-toolbar color="secondary">
+     <ion-title align=center>   
+      {{titulo}} 
+      <div align=right>       
+          <button ion-button (click)="dismiss()" color="secondary" >
+              <span  ion-text  showWhen="ios">Cancel</span>
+              <ion-icon name="md-close" showWhen="android, windows"></ion-icon>    
+         </button>  
+      </div>
+   </ion-title> 
+ 
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding align=center>
+
+<form>
+   <div *ngFor="let item of LJuegos | async">
+        <ion-card>
+         <ion-card-header>
+             {{item.nombre}}<br>
+         </ion-card-header>
+         Fecha: {{item.fecha}}<br>
+         Resultado: {{item.jugada}}<br>
+         Puntos de usuario: {{item.puntosUsr}}<br>
+         Puntos de la maquina: {{item.puntosMaq}}<br>
+         <br>    
+        </ion-card>
+   </div>
+</form>
+
+
+</ion-content>
