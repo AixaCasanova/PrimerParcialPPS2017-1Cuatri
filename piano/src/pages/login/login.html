@@ -1,0 +1,19 @@
+<ion-header>
+  <ion-toolbar color="danger">
+    <ion-title align=center>Ingrese al juego</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+    <ion-item>
+        <ion-label floating>Nombre</ion-label>
+        <ion-input type="text" value="" [(ngModel)]="usr"></ion-input>
+    </ion-item>
+
+
+    <div padding>
+        <button (click) = "goToPiano()" ion-button color="danger" *ngIf="usr" block>Iniciar</button>
+    </div>
+ 
+</ion-content>
