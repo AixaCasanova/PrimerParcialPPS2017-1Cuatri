@@ -12,7 +12,7 @@
 		 <button ion-button full (click)="verResp(pregunta,r2,2)" [disabled]="estado" color="{{btncolor2}}">{{r2}}</button><br>
  		 <button ion-button full (click)="verResp(pregunta,r3,3)" [disabled]="estado" color="{{btncolor3}}">{{r3}}</button><br>
 		 <button ion-button full (click)="verResp(pregunta,r4,4)" [disabled]="estado" color="{{btncolor4}}">{{r4}}</button><br>
-	 
+		 <strong><div *ngIf=verrespOK> Respuesta correcta: {{respOk}} </div></strong>
 	 </div>
 
  <div *ngIf=veo align=center>	 

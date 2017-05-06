@@ -77,6 +77,8 @@ export class juego
      vib:any;
      audioBTN;
      estado:boolean=false;
+     verrespOK:boolean=false;
+     respOk;
   //
   
   //var color
@@ -112,7 +114,7 @@ export class juego
     {  
       
       //console.info(this.listaPregResp);
-     
+     this.respOk=this.listaPreguntas[this.contador]['re'];
     this.listaPregResp[this.contador]={"pr": pregu ,"re": re};
      //this.listaPregResp["prre"]+= pregu + re + "</br>";
       //  console.info( this.listaPregResp);
@@ -124,11 +126,11 @@ export class juego
           for (let preg in this.listaPreguntas) 
           {
               this.Lapreg = this.listaPreguntas[preg];
+              
               if(pregu == this.Lapreg['pr'] && re == this.Lapreg['re'])
               { 
                     console.info("ok: "+ this.Lapreg['re']);
                     this.banderaOk=true;
-                  
                     break;                
               }
               
@@ -146,7 +148,7 @@ export class juego
              this.vibration.vibrate(300); 
              console.info("se escucha?");
              this.audioBTN.play('ok',() => console.log('ok is done playing'));
-            
+            this.verrespOK=true;
           }
           else{ 
             this.estado=true;
@@ -158,7 +160,7 @@ export class juego
             else if(nrobtn==4){this.btncolor4=this.btnColorErr;}
             this.vibration.vibrate([100,100,100]);   
             this.audioBTN.play('nook',() => console.log('nook is done playing'));
-            
+            this.verrespOK=true;
           }
 
       
@@ -196,6 +198,7 @@ export class juego
 
       verPreguntaYResp()
       {
+        this.verrespOK=false;
         this.estado=false;
         this.pregunta = this.listaPreguntas[this.contador]['pr'];
         this.r1=this.listaRespuestas[this.contador]['r1'];
